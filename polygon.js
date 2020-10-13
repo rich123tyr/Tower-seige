@@ -1,15 +1,14 @@
 class Hexagon{
-    constructor(x,y,width,height){
+    constructor(x,y,radius){
         var options={
-            isStatic:true,
+            isStatic:false,
             restitution:0,
             friction:1.0,
             density:1.2,
         }
-        this.body = Bodies.polygon(x,y,width,height,options);
+        this.body = Bodies.circle(x,y,radius,options);
         this.image = loadImage("download.png");
-        this.width = width;
-        this.height = height;
+        this.radius = radius;
         World.add(world, this.body);
 
     }
@@ -17,13 +16,11 @@ class Hexagon{
     display(){
         var angle = this.body.angle;
         var pos = this.body.position;
-        this.image.scale = 2.0;
         push();
         translate(this.body.position.x,this.body.position.y);
-        fill("yellow");
         rotate(angle);
         imageMode(CENTER);
-        image(this.image,0,0,this.width,this.height);
+        image(this.image,0,0,this.radius,this.radius);;
         pop();
     }
 }

@@ -2,6 +2,7 @@ const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
+const Events = Matter.Events;
 
 var engine, world;
 
@@ -32,9 +33,9 @@ function setup() {
   ground1 = new Ground(860,500,320,20);
   ground2 = new Ground(1290,300,230,20);
     
-  hexagon = new Hexagon(200,600,150,70);
+  hexagon = new Hexagon(200,600,30);
 
-  chain = new Chain(hexagon.body,{x:200,y:400});
+  chain = new SlingShot(hexagon.body,{x:300,y:400});
 
   box1 = new Box(720,470,30,40);
   box2 = new Box(760,470,30,40);
@@ -101,6 +102,7 @@ function setup() {
 
 function draw() {
   background(220);  
+  Engine.update(engine);
 
   hexagon.display();
 
@@ -166,12 +168,15 @@ function draw() {
   box55.display();
   box56.display();
   box57.display();
+
+  engine.events = {}
   
   drawSprites();
 }
 
 function mouseDragged(){
-      Matter.Body.setPosition(stone.body, {x: mouseX , y: mouseY});
+  
+      Matter.Body.setPosition(hexagon.body, {x: mouseX , y: mouseY});
 }
 
 
