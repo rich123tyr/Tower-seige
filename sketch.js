@@ -181,5 +181,6 @@ function mouseDragged(){
 
 
 function mouseReleased(){
+  engine.events = {}
   chain.fly();
 }

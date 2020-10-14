@@ -2,7 +2,7 @@ class Hexagon{
     constructor(x,y,radius){
         var options={
             isStatic:false,
-            restitution:0,
+            restitution:0.3,
             friction:1.0,
             density:1.2,
         }
