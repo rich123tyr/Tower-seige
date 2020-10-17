@@ -20,6 +20,8 @@ var box41,box42,box43,box44,box45,box46,box47,box48,box49,box50;
 
 var box51,box52,box53,box54,box55,box56,box57;
 
+gameState = "onSling";
+
 function preload(){
 
 }
@@ -33,7 +35,7 @@ function setup() {
   ground1 = new Ground(860,500,320,20);
   ground2 = new Ground(1290,300,230,20);
     
-  hexagon = new Hexagon(200,600,30);
+  hexagon = new Hexagon(300,400,30);
 
   chain = new SlingShot(hexagon.body,{x:300,y:400});
 
@@ -96,7 +98,7 @@ function setup() {
   box56 = new Box(1310,110,30,40);
   box57 = new Box(1290,70,30,40);
   
-  
+  Engine.run(engine);
 
 }
 
@@ -169,18 +171,29 @@ function draw() {
   box56.display();
   box57.display();
 
-  engine.events = {}
+
+  keyPressed();
   
   drawSprites();
 }
 
 function mouseDragged(){
+  Events.on(engine,"afterUpdate",function(){
+      if (gameState!=="launched"){
+          Matter.Body.setPosition(hexagon.body, {x: mouseX , y: mouseY});
+      }
+  })
   
-      Matter.Body.setPosition(hexagon.body, {x: mouseX , y: mouseY});
 }
-
 
 function mouseReleased(){
   engine.events = {}
   chain.fly();
+  gameState =  "launched";
+}
+
+function keyPressed(){
+  if(keyCode === 32){
+      chain.attach(hexagon.body);
+  }
 }
