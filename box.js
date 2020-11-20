@@ -16,7 +16,7 @@ class Box{
        
         display(){
           //console.log(this.body.speed);
-          if(this.body.speed < 3){ 
+          if(this.body.speed < 5){ 
             var angle = this.body.angle;
             var pos = this.body.position;
             push();
@@ -33,9 +33,16 @@ class Box{
             this.Visiblity = this.Visiblity - 5;
             tint(255,this.Visiblity);
             imageMode(CENTER);
-            image(this.image,0,0, 50, 50);
+            image(this.image,this.body.position.x,this.body.position.y, 50, 50);
             pop();
           }
         }
+        score(){
+          //console.log(this.Visiblity);
+          if(this.Visiblity < 0 && this.Visiblity > -105){
+          
+            score++
+          }
+         }
       }
       

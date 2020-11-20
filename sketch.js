@@ -20,9 +20,15 @@ var box41,box42,box43,box44,box45,box46,box47,box48,box49,box50;
 
 var box51,box52,box53,box54,box55,box56,box57;
 
+var backgroundImg;
+
 gameState = "onSling";
 
+var score = 0;
+
 function preload(){
+  
+  getbackground();
 
 }
 
@@ -103,7 +109,9 @@ function setup() {
 }
 
 function draw() {
-  background(220);  
+  if(backgroundImg){
+    background(backgroundImg);
+}
   Engine.update(engine);
 
   hexagon.display();
@@ -171,8 +179,66 @@ function draw() {
   box56.display();
   box57.display();
 
+  box1.score();
+  box2.score();
+  box3.score();
+  box4.score();
+  box5.score();
+  box6.score();
+  box7.score();
+  box8.score();
+  box9.score();
+  box10.score();
+  box11.score();
+  box12.score();
+  box13.score();
+  box14.score();
+  box15.score();
+  box16.score();
+  box17.score();
+  box18.score();
+  box19.score();
+  box20.score();
+  box21.score();
+  box22.score();
+  box23.score();
+  box24.score();
+  box25.score();
+  box26.score();
+  box27.score();
+  box28.score();
+  box29.score();
+  box30.score();
+  box31.score();
+  box32.score();
+  box33.score();
+  box34.score();
+  box35.score();
+  box36.score();
+  box37.score();
+  box38.score();
+  box39.score();
+  box40.score();
+  box41.score();
+  box42.score();
+  box43.score();
+  box44.score();
+  box45.score();
+  box46.score();
+  box47.score();
+  box48.score();
+  box49.score();
+  box50.score();
+  box51.score();
+  box52.score();
+  box53.score();
+  box54.score();
+  box55.score();
+  box56.score();
+  box57.score();
 
-  keyPressed();
+  textSize(30);
+  text(score,width-300,30)
   
   drawSprites();
 }
@@ -196,4 +262,22 @@ function keyPressed(){
   if(keyCode === 32){
       chain.attach(hexagon.body);
   }
+}
+
+async function getbackground(){
+  var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var response1 = await response.json(); 
+
+  var datetime = response1.datetime;
+
+  var time = datetime.slice(11,13);
+
+  if(time >= 6 && time<=19 ){
+
+      backgroundImg = loadImage("bg.png");
+  }
+  else{
+       backgroundImg = loadImage("bg2.jpg");
+  }
+
 }
